@@ -1,0 +1,37 @@
+PyDSTool安装说明
+
+官网：http://www.ni.gsu.edu/~rclewley/PyDSTool/FrontPage.html
+PyDSTool版本有0.90.x,0.84-0.89,0.83及以下，所需依赖包及模块版本各不相同。
+由于0.90最新版本对依赖包限制较少，且带有setup.py安装文件，所以就安装0.90.2.
+由于PyDSTool所依赖的numpy模块官方未提供win64版本（后续部分程序运行不了），所以全按32位安装。
+另外PyDSTool所需matplotlib模块安装还需要依赖python其他模块，安装较复杂，但是可以通过安装python集成环境的Anaconda解决。Anaconda集成了PyDSTool所需的（numpy,scipy,matplotlib，和pip工具）。
+
+安装步骤（W32）：
+通过Anaconda来安装PyDSTool就简便多了，省去考虑模块版本间的依赖性。
+
+1安装Anaconda（Windows32 Python2.7）
+https://www.continuum.io/downloads
+(已集成Win32 Python2.7,numpy,scipy, matplotlib,pip,应该要卸载已安装64位Python，不卸会不会出错没试过。)
+
+2安装swig>2.0(PyDSTool支持C,C++,Fortran编译器）
+https://sourceforge.net/projects/swig/files/swigwin/swigwin-2.0.4/
+直接解压并将路径添加到Path变量中即可。
+
+3安装PyDSTool_0.90.2
+https://sourceforge.net/projects/pydstool/files/
+这时可以按照PyDSTool_0.90.2中的安装文档README.rst即可。
+（我当时在MinGW中完成下面这步,想想在cmd命令应当也是可以的。）
+	cd 找到PyDSTool解压路径
+	python setup.py install
+	
+测试程序：
+接着README.rst文档即可，下面在cmd命令下就可完成
+例子
+cd examples
+python run_all_tests.py
+
+测试套件
+其中pip install py.test mock出错，后来发现在C:\Anaconda2\Scripts下Anaconda已将py.test安装好。
+所以直接
+pip install mock
+python setup.py test
